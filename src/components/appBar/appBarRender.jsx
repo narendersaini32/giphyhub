@@ -16,6 +16,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
   root: {
@@ -90,6 +91,7 @@ const styles = theme => ({
 class AppBarComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.googleInput = React.createRef();
     this.state = { anchorEl: null, mobileMoreAnchorEl: null };
   }
 
@@ -112,7 +114,7 @@ class AppBarComponent extends React.Component {
 
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
-    const { classes, onSearch } = this.props;
+    const { classes, onSearch, text, onCloseIconClick } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -182,6 +184,9 @@ class AppBarComponent extends React.Component {
                   root: classes.inputRoot,
                   input: classes.inputInput
                 }}
+                inputRef={input => {
+                  this.searchField = input;
+                }}
                 onKeyPress={e => {
                   const {
                     target: { value }
@@ -192,6 +197,22 @@ class AppBarComponent extends React.Component {
                 }}
               />
             </div>
+            {text && (
+              <IconButton
+                className={classes.menuButton}
+                color="inherit"
+                onClick={() => {
+                  this.searchField.value = '';
+                  onCloseIconClick([
+                    { stateName: 'data', value: [] },
+                    { stateName: 'text', value: '' }
+                  ]);
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+            )}
+
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <IconButton color="inherit">
@@ -229,7 +250,12 @@ class AppBarComponent extends React.Component {
 
 AppBarComponent.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  onSearch: PropTypes.func.isRequired
+  onSearch: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  onCloseIconClick: PropTypes.func.isRequired
+};
+AppBarComponent.defaultProps = {
+  text: ''
 };
 
 export default withStyles(styles)(AppBarComponent);

@@ -25,21 +25,27 @@ class AppBar extends PureComponent {
       .then(
         result => {
           const { data = [] } = result;
-          this.setState({ data, isLoading: false, error: '' });
+          this.setState({ data, isLoading: false, error: '', text });
         },
         error => {
-          console.log('TCL: AppBar -> error', error);
-
-          this.setState({ isLoading: false, error });
+          this.setState({ isLoading: false, error, text: '' });
         }
       );
   };
 
+  handleState = (changesList = []) => {
+    changesList.map(obj => {
+      const { stateName, value } = obj;
+      this.setState({ [stateName]: value });
+      return '';
+    });
+  };
+
   render() {
-    const { data = [], isLoading, error } = this.state;
+    const { data = [], isLoading, error, text } = this.state;
     return (
       <Fragment>
-        <AppBarComponent onSearch={this.onSearch} />
+        <AppBarComponent onSearch={this.onSearch} text={text} onCloseIconClick={this.handleState} />
         {isLoading && <LinearProgress />}
         {error && (
           <Typography component="h2" variant="h1" gutterBottom>
