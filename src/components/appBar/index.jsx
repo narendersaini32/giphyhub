@@ -20,7 +20,7 @@ class AppBar extends PureComponent {
   onSearch = text => {
     this.setState({ isLoading: true });
     //  eslint-disable-next-line
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${text}&api_key=${giphyApiKey}&limit=10`)
+    fetch(`https://api.giphy.com/v1/gifs/search?q=${text}&api_key=${giphyApiKey}&limit=10`)
       .then(res => res.json())
       .then(
         result => {
