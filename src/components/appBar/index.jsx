@@ -4,17 +4,40 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import AppBarComponent from './appBarRender';
 import GifCard from '../gifCard';
+import Welcome from './welcome';
 import { giphyApiKey } from '../../keys.json';
 
 const Wrapper = Styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: space-evenly;
+height: -webkit-fill-available;
 `;
 class AppBar extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { data: [], random: '' };
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    //  eslint-disable-next-line
+    fetch(`https://api.giphy.com/v1/gifs/random?api_key=${giphyApiKey}&tag=naruto`)
+      .then(res => res.json())
+      .then(
+        result => {
+          const { data = {} } = result;
+          const {
+            images: {
+              downsized: { url }
+            }
+          } = data;
+          this.setState({ isLoading: false, error: '', random: url });
+        },
+        error => {
+          this.setState({ isLoading: false, error, text: '' });
+        }
+      );
   }
 
   onSearch = text => {
@@ -42,7 +65,7 @@ class AppBar extends PureComponent {
   };
 
   render() {
-    const { data = [], isLoading, error, text } = this.state;
+    const { data = [], isLoading, error, text, random } = this.state;
     return (
       <Fragment>
         <AppBarComponent onSearch={this.onSearch} text={text} onCloseIconClick={this.handleState} />
@@ -62,6 +85,7 @@ class AppBar extends PureComponent {
             } = obj;
             return <GifCard url={url} key={url} />;
           })}
+          {data.length === 0 && random && <Welcome url={random} />}
         </Wrapper>
       </Fragment>
     );
