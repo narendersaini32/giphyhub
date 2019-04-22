@@ -11,7 +11,9 @@ const Wrapper = Styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: space-evenly;
-height: -webkit-fill-available;
+height: auto;
+background-color: darkgray;
+background-image: url(https://images.pexels.com/photos/131634/pexels-photo-131634.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260)
 `;
 class AppBar extends PureComponent {
   constructor(props) {
@@ -20,30 +22,13 @@ class AppBar extends PureComponent {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
-    //  eslint-disable-next-line
-    fetch(`https://api.giphy.com/v1/gifs/random?api_key=${giphyApiKey}&tag=naruto`)
-      .then(res => res.json())
-      .then(
-        result => {
-          const { data = {} } = result;
-          const {
-            images: {
-              downsized: { url }
-            }
-          } = data;
-          this.setState({ isLoading: false, error: '', random: url });
-        },
-        error => {
-          this.setState({ isLoading: false, error, text: '' });
-        }
-      );
+    this.onCloseIconClick();
   }
 
   onSearch = text => {
     this.setState({ isLoading: true });
     //  eslint-disable-next-line
-    fetch(`https://api.giphy.com/v1/gifs/search?q=${text}&api_key=${giphyApiKey}&limit=10`)
+    fetch(`https://api.giphy.com/v1/gifs/search?q=${text}&api_key=${giphyApiKey}`)
       .then(res => res.json())
       .then(
         result => {
@@ -56,19 +41,31 @@ class AppBar extends PureComponent {
       );
   };
 
-  handleState = (changesList = []) => {
-    changesList.map(obj => {
-      const { stateName, value } = obj;
-      this.setState({ [stateName]: value });
-      return '';
-    });
+  onCloseIconClick = () => {
+    this.setState({ isLoading: true });
+    //  eslint-disable-next-line
+    fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${giphyApiKey}`)
+      .then(res => res.json())
+      .then(
+        result => {
+          const { data = [] } = result;
+          this.setState({ isLoading: false, error: '', data, text: '' });
+        },
+        error => {
+          this.setState({ isLoading: false, error, text: '' });
+        }
+      );
   };
 
   render() {
     const { data = [], isLoading, error, text, random } = this.state;
     return (
       <Fragment>
-        <AppBarComponent onSearch={this.onSearch} text={text} onCloseIconClick={this.handleState} />
+        <AppBarComponent
+          onSearch={this.onSearch}
+          text={text}
+          onCloseIconClick={this.onCloseIconClick}
+        />
         {isLoading && <LinearProgress />}
         {error && (
           <Typography component="h2" variant="h1" gutterBottom>

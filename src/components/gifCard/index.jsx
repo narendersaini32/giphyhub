@@ -14,7 +14,11 @@ const styles = {
     minWidth: 222
   },
   media: {
-    height: 246
+    height: 246,
+    backgroundColor: '#4054b4'
+  },
+  buttonRoot: {
+    margin: 'auto'
   }
 };
 
@@ -23,10 +27,17 @@ function GifCard(props) {
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia className={classes.media} image={`${url}`} title="Contemplative Reptile" />
+        <CardMedia className={classes.media} image={`${url}`} />
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          className={classes.buttonRoot}
+          onClick={() => {
+            window.open(url); // eslint-disable-line
+          }}
+        >
           Download
         </Button>
       </CardActions>

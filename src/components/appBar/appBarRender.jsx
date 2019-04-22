@@ -24,9 +24,16 @@ const styles = theme => ({
   title: {
     color: 'initial',
     display: 'none',
+    fontStyle: 'italic',
     [theme.breakpoints.up('sm')]: {
       display: 'block'
-    }
+    },
+    fontWeight: 'lighter'
+  },
+  normalText: {
+    fontStyle: 'italic',
+    color: 'black',
+    fontWeight: 'lighter'
   },
   search: {
     position: 'relative',
@@ -65,7 +72,10 @@ const styles = theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       width: 200
-    }
+    },
+    fontWeight: 'lighter',
+    fontStyle: 'italic',
+    color: 'black'
   },
   sectionDesktop: {
     display: 'none',
@@ -126,16 +136,13 @@ class AppBarComponent extends React.Component {
                 color="inherit"
                 onClick={() => {
                   this.searchField.value = '';
-                  onCloseIconClick([
-                    { stateName: 'data', value: [] },
-                    { stateName: 'text', value: '' }
-                  ]);
+                  onCloseIconClick();
                 }}
               >
                 <CloseIcon />
               </IconButton>
             )}
-            <div className={classes.grow} />
+            {!text && <Typography className={classes.normalText}>Trending Gifs</Typography>}
           </Toolbar>
         </AppBar>
       </div>
