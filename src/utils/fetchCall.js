@@ -1,9 +1,15 @@
 import { giphyApiKey } from '../keys.json';
-// import { findRoute } from './index';
+import { findRoute } from './index';
 
 export default async function fetchCall(route, searchText, loadMore, clear) {
   const { count = 1, data, text } = this.state;
-  //   const routeName = findRoute(route);
+  const routeName = findRoute(route);
+  let type = 'gifs/trending';
+  if (routeName === 'sticker') {
+    type = 'stickers/trending';
+  } else if (routeName === 'translate') {
+    type = 'gifs/random';
+  }
   this.setState({ isLoading: true });
   try {
     let url;
@@ -14,16 +20,19 @@ export default async function fetchCall(route, searchText, loadMore, clear) {
         url = `https://api.giphy.com/v1/gifs/search?q=${text}&api_key=${giphyApiKey}&limit=10&offset=${count *
           11}}`;
       } else {
-        url = `https://api.giphy.com/v1/gifs/trending?api_key=${giphyApiKey}&limit=10&offset=${count *
+        url = `https://api.giphy.com/v1/${type}?api_key=${giphyApiKey}&limit=10&offset=${count *
           11}}`;
       }
     } else {
-      url = `https://api.giphy.com/v1/gifs/trending?api_key=${giphyApiKey}&limit=10`;
+      url = `https://api.giphy.com/v1/${type}?&api_key=${giphyApiKey}&limit=10`;
     }
     //  eslint-disable-next-line
     let result = await fetch(url);
     result = await result.json();
-    const { data: newData = [] } = result;
+    let { data: newData = [] } = result;
+    if (!Array.isArray(newData)) {
+      newData = [newData];
+    }
     const state = {
       data: newData,
       isLoading: false,

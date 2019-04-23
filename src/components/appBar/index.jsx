@@ -40,7 +40,13 @@ class AppBar extends PureComponent {
   }
 
   componentWillMount() {
-    fetchCall.call(this);
+    const { location } = this.props;
+    fetchCall.call(this, location);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { location } = nextProps;
+    fetchCall.call(this, location);
   }
 
   onCloseIconClick = async () => {
