@@ -8,7 +8,7 @@ class Home extends PureComponent {
   }
 
   render() {
-    return <AppBarComponent />;
+    return <AppBarComponent {...this.props} />;
   }
 }
 export default Home;
