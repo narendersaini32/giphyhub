@@ -15,7 +15,8 @@ const styles = {
   },
   media: {
     height: 246,
-    backgroundColor: '#4054b4'
+    backgroundColor: 'grey',
+    transition: 'all 2s fadein'
   },
   buttonRoot: {
     margin: 'auto'
