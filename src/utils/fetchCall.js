@@ -4,9 +4,12 @@ import { findRoute } from './index';
 export default async function fetchCall(route, searchText, loadMore, clear) {
   const { count = 1, data, text } = this.state;
   const routeName = findRoute(route);
+  console.log('TCL: fetchCall -> routeName', routeName);
   let type = 'gifs/trending';
-  if (routeName === 'sticker') {
-    type = 'stickers/trending';
+  if (routeName === 'home') {
+    type = searchText ? 'gifs/search' : 'gifs/trending';
+  } else if (routeName === 'sticker') {
+    type = searchText ? 'stickers/search' : 'stickers/trending';
   } else if (routeName === 'translate') {
     type = 'gifs/random';
   }
@@ -14,10 +17,10 @@ export default async function fetchCall(route, searchText, loadMore, clear) {
   try {
     let url;
     if (searchText) {
-      url = `https://api.giphy.com/v1/gifs/search?q=${searchText}&api_key=${giphyApiKey}&limit=10`;
+      url = `https://api.giphy.com/v1/${type}?q=${searchText}&api_key=${giphyApiKey}&limit=10`;
     } else if (loadMore) {
       if (text) {
-        url = `https://api.giphy.com/v1/gifs/search?q=${text}&api_key=${giphyApiKey}&limit=10&offset=${count *
+        url = `https://api.giphy.com/v1/${type}?q=${text}&api_key=${giphyApiKey}&limit=10&offset=${count *
           11}}`;
       } else {
         url = `https://api.giphy.com/v1/${type}?api_key=${giphyApiKey}&limit=10&offset=${count *
@@ -26,7 +29,6 @@ export default async function fetchCall(route, searchText, loadMore, clear) {
     } else {
       url = `https://api.giphy.com/v1/${type}?&api_key=${giphyApiKey}&limit=4`;
     }
-    //  eslint-disable-next-line
     let result = await fetch(url);
     result = await result.json();
     let { data: newData = [] } = result;
