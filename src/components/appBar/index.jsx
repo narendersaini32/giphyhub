@@ -12,7 +12,6 @@ const styles = theme => {
   return {
     button: {
       display: 'block',
-      border: 0,
       fontSize: '1em',
       color: '#fff',
       fontWeight: 500,
@@ -24,6 +23,11 @@ const styles = theme => {
       position: 'relative',
       bottom: 5,
       borderRadius: 9,
+      backgroundColor: theme.palette.primary.main,
+      outline: 'none',
+      border: `1 solid ${theme.palette.secondary.main}`
+    },
+    backgroundColor: {
       backgroundColor: theme.palette.primary.main
     }
   };
@@ -69,7 +73,7 @@ class AppBar extends PureComponent {
           }}
         />
         {isLoading && <LinearProgress />}
-        <Wrapper>
+        <Wrapper className={classes.backgroundColor}>
           <FlexBox>
             {error || !data.length ? (
               <Typography variant="h5" style={{ marginTop: '25%' }}>
