@@ -12,7 +12,12 @@ const styles = theme => {
     card: {
       maxWidth: 345,
       margin: 10,
-      minWidth: 222
+      minWidth: 222,
+      transition: 'all 0.2s ease-in-out',
+      '&:hover': {
+        transform: 'scale(1.5)',
+        zIndex: 4
+      }
     },
     media: {
       height: 246,
