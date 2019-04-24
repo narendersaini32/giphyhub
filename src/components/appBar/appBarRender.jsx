@@ -14,7 +14,11 @@ import Trending from '@material-ui/icons/TrendingUp';
 import Sticker from '@material-ui/icons/Message';
 import Translate from '@material-ui/icons/Translate';
 import { Link } from 'react-router-dom';
+import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
+import MenuIcon from '@material-ui/icons/Menu';
 
+const drawerWidth = 240;
 const styles = theme => ({
   root: {
     width: '100%'
@@ -23,8 +27,7 @@ const styles = theme => ({
     flexGrow: 1
   },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20
+    marginTop: -4
   },
   title: {
     color: 'initial',
@@ -46,27 +49,26 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
-    marginRight: theme.spacing.unit * 2,
-    marginLeft: 0,
     width: '100%',
+    minWidth: '200px',
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing.unit * 3,
       width: 'auto'
     },
-    right: '37px',
-    position: 'absolute',
     boxShadow:
       '0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)',
     borderRadius: '24px'
   },
   searchIcon: {
     width: theme.spacing.unit * 9,
-    height: '100%',
+    height: '58%',
     position: 'absolute',
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      height: '72%'
+    }
   },
   inputRoot: {
     color: 'inherit',
@@ -103,6 +105,32 @@ const styles = theme => ({
   },
   margin: {
     margin: theme.spacing.unit
+  },
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0
+    }
+  },
+  appBar: {
+    marginLeft: drawerWidth,
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`
+    }
+  },
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+    width: drawerWidth
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3
+  },
+  span: {
+    display: 'flex',
+    height: '35px',
+    justifyContent: 'flex-end',
+    margin: 'auto'
   }
 });
 
@@ -110,98 +138,135 @@ class AppBarComponent extends React.Component {
   constructor(props) {
     super(props);
     this.googleInput = React.createRef();
+    this.state = { mobileOpen: false };
   }
+
+  handleDrawerToggle = () => {
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+  };
 
   render() {
     const { classes, onSearch, text, onCloseIconClick } = this.props;
-
+    const { mobileOpen } = this.state;
+    const drawer = (
+      <div>
+        <div className={classes.toolbar} />
+        <Link to="/">
+          <Fab
+            variant="extended"
+            size="medium"
+            color="primary"
+            aria-label="Add"
+            className={classes.margin}
+          >
+            <Home className={classes.extendedIcon} />
+            Home
+          </Fab>
+        </Link>
+        <Divider />
+        <Link to="/trending">
+          <Fab
+            variant="extended"
+            size="medium"
+            color="primary"
+            aria-label="Add"
+            className={classes.margin}
+          >
+            <Trending className={classes.extendedIcon} />
+            Trending
+          </Fab>
+        </Link>
+        <Divider />
+        <Link to="/sticker">
+          <Fab
+            variant="extended"
+            size="medium"
+            color="primary"
+            aria-label="Add"
+            className={classes.margin}
+          >
+            <Sticker className={classes.extendedIcon} />
+            Stickers
+          </Fab>
+        </Link>
+        <Divider />
+        <Link to="/translate">
+          <Fab
+            variant="extended"
+            size="medium"
+            color="primary"
+            aria-label="Add"
+            className={classes.margin}
+          >
+            <Translate className={classes.extendedIcon} />
+            Translate
+          </Fab>
+        </Link>
+        <Divider />
+      </div>
+    );
     return (
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Link to="/">
-              <Fab
-                variant="extended"
-                size="medium"
-                color="primary"
-                aria-label="Add"
-                className={classes.margin}
-              >
-                <Home className={classes.extendedIcon} />
-                Home
-              </Fab>
-            </Link>
-            <Link to="/trending">
-              <Fab
-                variant="extended"
-                size="medium"
-                color="primary"
-                aria-label="Add"
-                className={classes.margin}
-              >
-                <Trending className={classes.extendedIcon} />
-                Trending
-              </Fab>
-            </Link>
-            <Link to="/sticker">
-              <Fab
-                variant="extended"
-                size="medium"
-                color="primary"
-                aria-label="Add"
-                className={classes.margin}
-              >
-                <Sticker className={classes.extendedIcon} />
-                Stickers
-              </Fab>
-            </Link>
-            <Link to="/translate">
-              <Fab
-                variant="extended"
-                size="medium"
-                color="primary"
-                aria-label="Add"
-                className={classes.margin}
-              >
-                <Translate className={classes.extendedIcon} />
-                Translate
-              </Fab>
-            </Link>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={this.handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              variant="temporary"
+              anchor="left"
+              open={mobileOpen}
+              onClose={this.handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper
+              }}
+            >
+              {drawer}
+            </Drawer>
+            <span className={classes.span}>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search gif..."
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput
+                  }}
+                  inputRef={input => {
+                    this.searchField = input;
+                  }}
+                  onKeyPress={e => {
+                    const {
+                      target: { value }
+                    } = e;
+                    if (e.key === 'Enter' && value) {
+                      onSearch(value);
+                    }
+                  }}
+                />
               </div>
-              <InputBase
-                placeholder="Search gif..."
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-                inputRef={input => {
-                  this.searchField = input;
-                }}
-                onKeyPress={e => {
-                  const {
-                    target: { value }
-                  } = e;
-                  if (e.key === 'Enter' && value) {
-                    onSearch(value);
-                  }
-                }}
-              />
-            </div>
-            {text && (
-              <IconButton
-                className={classes.menuButton}
-                color="inherit"
-                onClick={() => {
-                  this.searchField.value = '';
-                  onCloseIconClick();
-                }}
-              >
-                <CloseIcon />
-              </IconButton>
-            )}
+              <div>
+                {text && (
+                  <IconButton
+                    className={classes.menuButton}
+                    color="inherit"
+                    onClick={() => {
+                      this.searchField.value = '';
+                      onCloseIconClick();
+                    }}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                )}
+              </div>
+            </span>
           </Toolbar>
         </AppBar>
       </div>
