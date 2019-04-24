@@ -13,7 +13,7 @@ const styles = theme => {
       maxWidth: 345,
       margin: 10,
       minWidth: 222,
-      transition: 'all 0.2s ease-in-out',
+      transition: 'all 0.5s ease-in-out',
       '&:hover': {
         transform: 'scale(1.5)',
         zIndex: 4
@@ -21,8 +21,8 @@ const styles = theme => {
     },
     media: {
       height: 246,
-      backgroundColor: theme.palette.primary.main,
-      transition: 'all 2s fadein'
+      backgroundSize: 'cover',
+      backgroundColor: theme.palette.primary.main
     },
     buttonRoot: {
       margin: 'auto'
