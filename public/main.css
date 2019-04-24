@@ -3,36 +3,29 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 1;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 0.2s linear infinite;
-  animation: spin 0.2s linear infinite;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+h1 {
+  position: relative;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 2em;
+}
+h1:before {
+  content: attr(data-text);
+  position: absolute;
+  overflow: hidden;
+  max-width: 7em;
+  white-space: nowrap;
+  color: grey;
+  animation: loading 0.1s linear;
+}
+@keyframes loading {
+  0% {
+    max-width: 0;
+  }
 }
 
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 /* Add animation to "page content" */
 .animate-bottom {
   position: relative;
@@ -40,6 +33,7 @@
   -webkit-animation-duration: 1s;
   animation-name: animatebottom;
   animation-duration: 1s;
+  animation-delay: 0.1s;
 }
 
 @-webkit-keyframes animatebottom {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import GifCard from '../gifCard';
 
 const styles = theme => ({
   root: {
@@ -19,7 +18,7 @@ const styles = theme => ({
 });
 
 function Welcome(props) {
-  const { classes, url } = props;
+  const { classes } = props;
 
   return (
     <div>
@@ -27,15 +26,13 @@ function Welcome(props) {
         <Typography className={classes.h5} variant="h5" component="h3">
           Welcome to Giphy Hub.
         </Typography>
-        <GifCard url={url} />
       </Paper>
     </div>
   );
 }
 
 Welcome.propTypes = {
-  classes: PropTypes.instanceOf(Object).isRequired,
-  url: PropTypes.string.isRequired
+  classes: PropTypes.instanceOf(Object).isRequired
 };
 
 export default withStyles(styles)(Welcome);

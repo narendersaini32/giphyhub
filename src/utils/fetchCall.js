@@ -24,7 +24,7 @@ export default async function fetchCall(route, searchText, loadMore, clear) {
           11}}`;
       }
     } else {
-      url = `https://api.giphy.com/v1/${type}?&api_key=${giphyApiKey}&limit=10`;
+      url = `https://api.giphy.com/v1/${type}?&api_key=${giphyApiKey}&limit=4`;
     }
     //  eslint-disable-next-line
     let result = await fetch(url);
