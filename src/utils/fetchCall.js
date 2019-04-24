@@ -16,17 +16,17 @@ export default async function fetchCall(route, searchText, loadMore, clear) {
   try {
     let url;
     if (searchText) {
-      url = `https://api.giphy.com/v1/${type}?q=${searchText}&api_key=${giphyApiKey}&limit=10&s=${searchText}`;
+      url = `https://api.giphy.com/v1/${type}?q=${searchText}&api_key=${giphyApiKey}&limit=10&s=${searchText}&rating=g`;
     } else if (loadMore) {
       if (text) {
         url = `https://api.giphy.com/v1/${type}?q=${text}&api_key=${giphyApiKey}&limit=10&offset=${count *
-          11}}`;
+          11}}&rating=g`;
       } else {
         url = `https://api.giphy.com/v1/${type}?api_key=${giphyApiKey}&limit=10&offset=${count *
-          11}}`;
+          11}}&rating=g`;
       }
     } else {
-      url = `https://api.giphy.com/v1/${type}?&api_key=${giphyApiKey}&limit=4`;
+      url = `https://api.giphy.com/v1/${type}?&api_key=${giphyApiKey}&limit=4&rating=g`;
     }
     let result = await fetch(url);
     result = await result.json();
