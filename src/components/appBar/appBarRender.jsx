@@ -15,124 +15,129 @@ import Sticker from '@material-ui/icons/Message';
 import Translate from '@material-ui/icons/Translate';
 import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
-const styles = theme => ({
-  root: {
-    width: '100%'
-  },
-  grow: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginTop: -4
-  },
-  title: {
-    color: 'initial',
-    display: 'none',
-    fontStyle: 'italic',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block'
+const styles = theme => {
+  console.log('theme', theme);
+  return {
+    root: {
+      width: '100%'
     },
-    fontWeight: 'lighter'
-  },
-  normalText: {
-    fontStyle: 'italic',
-    color: 'black',
-    fontWeight: 'lighter',
-    margin: 'auto'
-  },
-  search: {
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
+    grow: {
+      flexGrow: 1
     },
-    width: '100%',
-    minWidth: '200px',
-    [theme.breakpoints.up('sm')]: {
-      width: 'auto'
+    menuButton: {
+      marginTop: -4
     },
-    boxShadow:
-      '0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)',
-    borderRadius: '24px'
-  },
-  searchIcon: {
-    width: theme.spacing.unit * 9,
-    height: '58%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
-      height: '72%'
-    }
-  },
-  inputRoot: {
-    color: 'inherit',
-    width: '100%'
-  },
-  inputInput: {
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: 200
+    title: {
+      color: 'initial',
+      display: 'none',
+      fontStyle: 'italic',
+      [theme.breakpoints.up('sm')]: {
+        display: 'block'
+      },
+      fontWeight: 'lighter'
     },
-    fontWeight: 'lighter',
-    fontStyle: 'italic',
-    color: 'black'
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
+    normalText: {
+      fontStyle: 'italic',
+      color: 'black',
+      fontWeight: 'lighter',
+      margin: 'auto'
+    },
+    search: {
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      '&:hover': {
+        backgroundColor: fade(theme.palette.common.white, 0.25)
+      },
+      width: '100%',
+      minWidth: '200px',
+      [theme.breakpoints.up('sm')]: {
+        width: 'auto'
+      },
+      boxShadow:
+        '0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)',
+      borderRadius: '24px',
+      alignItems: 'center',
       display: 'flex'
-    }
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
-  },
-  extendedIcon: {
-    marginRight: theme.spacing.unit
-  },
-  margin: {
-    margin: theme.spacing.unit
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
+    },
+    searchIcon: {
+      width: theme.spacing.unit * 9,
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    inputRoot: {
+      color: 'inherit',
+      width: '100%'
+    },
+    inputInput: {
+      paddingTop: theme.spacing.unit,
+      paddingRight: theme.spacing.unit,
+      paddingBottom: theme.spacing.unit,
+      paddingLeft: theme.spacing.unit * 10,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('md')]: {
+        width: 200
+      },
+      fontWeight: 'lighter',
+      fontStyle: 'italic',
+      color: 'black'
+    },
+    sectionDesktop: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'flex'
+      }
+    },
+    sectionMobile: {
+      display: 'flex',
+      [theme.breakpoints.up('md')]: {
+        display: 'none'
+      }
+    },
+    extendedIcon: {
+      marginRight: theme.spacing.unit
+    },
+    drawer: {
+      [theme.breakpoints.up('sm')]: {
+        width: drawerWidth,
+        flexShrink: 0
+      }
+    },
+    appBar: {
+      marginLeft: drawerWidth,
+      [theme.breakpoints.up('sm')]: {
+        width: `calc(100% - ${drawerWidth}px)`
+      }
+    },
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
       width: drawerWidth,
-      flexShrink: 0
+      backgroundColor: theme.palette.primary.main
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing.unit * 3
+    },
+    span: {
+      display: 'flex',
+      height: '35px',
+      justifyContent: 'flex-end',
+      margin: 'auto'
+    },
+    link: {
+      textDecoration: 'none'
+    },
+    appBarRoot: {},
+    fabButtonRoot: {
+      margin: theme.spacing.unit
     }
-  },
-  appBar: {
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`
-    }
-  },
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3
-  },
-  span: {
-    display: 'flex',
-    height: '35px',
-    justifyContent: 'flex-end',
-    margin: 'auto'
-  }
-});
+  };
+};
 
 class AppBarComponent extends React.Component {
   constructor(props) {
@@ -150,64 +155,35 @@ class AppBarComponent extends React.Component {
     const { mobileOpen } = this.state;
     const drawer = (
       <div>
-        <div className={classes.toolbar} />
-        <Link to="/">
-          <Fab
-            variant="extended"
-            size="medium"
-            color="primary"
-            aria-label="Add"
-            className={classes.margin}
-          >
+        <Link to="/" className={classes.link}>
+          <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
             <Home className={classes.extendedIcon} />
             Home
           </Fab>
         </Link>
-        <Divider />
-        <Link to="/trending">
-          <Fab
-            variant="extended"
-            size="medium"
-            color="primary"
-            aria-label="Add"
-            className={classes.margin}
-          >
+        <Link to="/trending" className={classes.link}>
+          <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
             <Trending className={classes.extendedIcon} />
             Trending
           </Fab>
         </Link>
-        <Divider />
-        <Link to="/sticker">
-          <Fab
-            variant="extended"
-            size="medium"
-            color="primary"
-            aria-label="Add"
-            className={classes.margin}
-          >
+        <Link to="/sticker" className={classes.link}>
+          <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
             <Sticker className={classes.extendedIcon} />
             Stickers
           </Fab>
         </Link>
-        <Divider />
-        <Link to="/translate">
-          <Fab
-            variant="extended"
-            size="medium"
-            color="primary"
-            aria-label="Add"
-            className={classes.margin}
-          >
+        <Link to="/translate" className={classes.link}>
+          <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
             <Translate className={classes.extendedIcon} />
             Translate
           </Fab>
         </Link>
-        <Divider />
       </div>
     );
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" classes={{ root: classes.appBarRoot }}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -221,6 +197,7 @@ class AppBarComponent extends React.Component {
               variant="temporary"
               anchor="left"
               open={mobileOpen}
+              color="primary"
               onClose={this.handleDrawerToggle}
               classes={{
                 paper: classes.drawerPaper

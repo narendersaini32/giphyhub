@@ -20,7 +20,6 @@ const Button = Styled.button`
 display: block;
   border: 0;
   font-size: 1em;
-  background-color: #4054b4;
   color: #fff;
   font-weight: 500;
   text-transform: uppercase;
