@@ -19,7 +19,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
 const styles = theme => {
-  console.log('theme', theme);
   return {
     root: {
       width: '100%'

@@ -3,10 +3,31 @@ import Styled from 'styled-components';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import AppBarComponent from './appBarRender';
 import GifCard from '../gifCard';
 import { fetchCall } from '../../utils';
 
+const styles = theme => {
+  return {
+    button: {
+      display: 'block',
+      border: 0,
+      fontSize: '1em',
+      color: '#fff',
+      fontWeight: 500,
+      textTransform: 'uppercase',
+      fontFamily: '$sans',
+      cursor: 'pointer',
+      height: 38,
+      margin: 'auto',
+      position: 'relative',
+      bottom: 5,
+      borderRadius: 9,
+      backgroundColor: theme.palette.primary.main
+    }
+  };
+};
 const Wrapper = Styled.div`
 min-height: -webkit-fill-available;
 height: auto;
@@ -15,21 +36,6 @@ const FlexBox = Styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: space-evenly;
-`;
-const Button = Styled.button`
-display: block;
-  border: 0;
-  font-size: 1em;
-  color: #fff;
-  font-weight: 500;
-  text-transform: uppercase;
-  font-family: $sans;
-  cursor: pointer;
-  height:38px;
-  margin: auto;
-  position: relative;
-  bottom: 5px;
-  border-radius: 9px;
 `;
 
 class AppBar extends PureComponent {
@@ -50,7 +56,7 @@ class AppBar extends PureComponent {
 
   render() {
     const { data = [], isLoading, error, text } = this.state;
-    const { location } = this.props;
+    const { location, classes } = this.props;
     return (
       <Fragment>
         <AppBarComponent
@@ -81,13 +87,15 @@ class AppBar extends PureComponent {
             )}
           </FlexBox>
           {!error && data.length > 0 && (
-            <Button
+            <button
+              type="button"
+              className={classes.button}
               onClick={() => {
                 fetchCall.call(this, location, '', true);
               }}
             >
               Load More
-            </Button>
+            </button>
           )}
         </Wrapper>
       </Fragment>
@@ -95,6 +103,7 @@ class AppBar extends PureComponent {
   }
 }
 AppBar.propTypes = {
+  classes: PropTypes.instanceOf(Object).isRequired,
   location: PropTypes.instanceOf(Object).isRequired
 };
-export default AppBar;
+export default withStyles(styles)(AppBar);

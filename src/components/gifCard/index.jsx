@@ -7,20 +7,22 @@ import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 
-const styles = {
-  card: {
-    maxWidth: 345,
-    margin: 10,
-    minWidth: 222
-  },
-  media: {
-    height: 246,
-    backgroundColor: 'grey',
-    transition: 'all 2s fadein'
-  },
-  buttonRoot: {
-    margin: 'auto'
-  }
+const styles = theme => {
+  return {
+    card: {
+      maxWidth: 345,
+      margin: 10,
+      minWidth: 222
+    },
+    media: {
+      height: 246,
+      backgroundColor: theme.palette.primary.main,
+      transition: 'all 2s fadein'
+    },
+    buttonRoot: {
+      margin: 'auto'
+    }
+  };
 };
 
 function GifCard(props) {
