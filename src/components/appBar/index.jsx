@@ -71,9 +71,9 @@ class AppBar extends PureComponent {
         {isLoading && <LinearProgress />}
         <Wrapper>
           <FlexBox>
-            {error ? (
+            {error || !data.length ? (
               <Typography variant="h5" style={{ marginTop: '25%' }}>
-                {error}
+                {error || 'Please Search Something'}
               </Typography>
             ) : (
               data.map(obj => {
