@@ -154,25 +154,25 @@ class AppBarComponent extends React.Component {
     const { mobileOpen } = this.state;
     const drawer = (
       <div>
-        <Link to="/" className={classes.link}>
+        <Link to="/" className={classes.link} onClick={this.handleDrawerToggle}>
           <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
             <Home className={classes.extendedIcon} />
             Home
           </Fab>
         </Link>
-        <Link to="/trending" className={classes.link}>
+        <Link to="/trending" className={classes.link} onClick={this.handleDrawerToggle}>
           <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
             <Trending className={classes.extendedIcon} />
             Trending
           </Fab>
         </Link>
-        <Link to="/sticker" className={classes.link}>
+        <Link to="/sticker" className={classes.link} onClick={this.handleDrawerToggle}>
           <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
             <Sticker className={classes.extendedIcon} />
             Stickers
           </Fab>
         </Link>
-        <Link to="/translate" className={classes.link}>
+        <Link to="/translate" className={classes.link} onClick={this.handleDrawerToggle}>
           <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
             <Translate className={classes.extendedIcon} />
             Translate
