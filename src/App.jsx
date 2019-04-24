@@ -5,6 +5,8 @@ import NoPageFound from './components/noPageFound';
 import './App.css';
 
 const App = () => {
+  // disable loader
+  document.getElementById('loader').style.display = 'none';
   return (
     <Router>
       <Switch>

@@ -49,48 +49,6 @@ class AppBar extends PureComponent {
     fetchCall.call(this, location);
   }
 
-  onCloseIconClick = async () => {
-    // this.setState({ isLoading: true });
-    // try {
-    //   //  eslint-disable-next-line
-    //   let result = await fetch(
-    //     `https://api.giphy.com/v1/gifs/trending?api_key=${giphyApiKey}&limit=10`
-    //   );
-    //   result = await result.json();
-    //   console.log('TCL: AppBar -> onCloseIconClick -> result', result);
-    //   const { data = [] } = result;
-    //   this.setState({ isLoading: false, error: '', data, text: '' });
-    // } catch (error) {
-    //   this.setState({ isLoading: false, error: 'Something Went Wrong', text: '' });
-    // }
-  };
-
-  loadMore = async () => {
-    // const { text, data, count } = this.state;
-    // let url;
-    // if (text) {
-    //   url = `https://api.giphy.com/v1/gifs/search?q=${text}&api_key=${giphyApiKey}&limit=10&offset=${count *
-    //     11}}`;
-    // } else {
-    //   url = `https://api.giphy.com/v1/gifs/trending?api_key=${giphyApiKey}&limit=10&offset=${count *
-    //     11}}`;
-    // }
-    // try {
-    //   //  eslint-disable-next-line
-    //   let result = await fetch(url);
-    //   result = await result.json();
-    //   const { data: newData = [] } = result;
-    //   this.setState({
-    //     isLoading: false,
-    //     error: '',
-    //     data: data.concat(newData),
-    //     count: count + 1
-    //   });
-    // } catch (error) {
-    //   this.setState({ isLoading: false, error: 'Something Went Wrong' });
-    // }
-  };
-
   render() {
     const { data = [], isLoading, error, text } = this.state;
     const { location } = this.props;
