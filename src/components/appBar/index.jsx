@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBarComponent from './appBarRender';
 import GifCard from '../gifCard';
-import { fetchCall } from '../../utils';
+import { fetchCall, findRoute } from '../../utils';
 
 const styles = theme => {
   return {
@@ -29,16 +29,26 @@ const styles = theme => {
     },
     backgroundColor: {
       backgroundColor: theme.palette.primary.main
+    },
+    gifType: {
+      fontSize: '14px',
+      fontWeight: 'bold',
+      textTransform: 'uppercase',
+      WebkitFontSmoothing: 'antialiased',
+      color: 'rgb(166, 166, 166)',
+      marginBottom: '6px',
+      marginLeft: '65px'
     }
   };
 };
 const Wrapper = Styled.div`
 min-height: -webkit-fill-available;
-height: auto;
+height: auto;,
 `;
 const FlexBox = Styled.div`
 display: flex;
 flex-wrap: wrap;
+padding: 10px;
 justify-content: space-evenly;
 `;
 
@@ -61,6 +71,8 @@ class AppBar extends PureComponent {
   render() {
     const { data = [], isLoading, error, text } = this.state;
     const { location, classes } = this.props;
+    let gifType = findRoute(location);
+    gifType = gifType === 'home' ? 'trending' : gifType;
     return (
       <Fragment>
         <AppBarComponent
@@ -74,9 +86,12 @@ class AppBar extends PureComponent {
         />
         {isLoading && <LinearProgress />}
         <Wrapper className={classes.backgroundColor}>
+          <Typography variant="h5" className={classes.gifType}>
+            {`${text || gifType} Gifs`}
+          </Typography>
           <FlexBox>
             {error || !data.length ? (
-              <Typography variant="h5" style={{ marginTop: '25%' }}>
+              <Typography variant="h5" className={classes.gifType}>
                 {error || 'Please Search Something'}
               </Typography>
             ) : (
