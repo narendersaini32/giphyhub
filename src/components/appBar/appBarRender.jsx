@@ -16,8 +16,15 @@ import Translate from '@material-ui/icons/Translate';
 import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import MenuIcon from '@material-ui/icons/Menu';
+import styled from 'styled-components';
 
 const drawerWidth = 240;
+const GiphyLogo = styled.div`
+  height: 54px;
+  background-image: url(poweredbyGiphy.gif);
+  background-size: cover;
+  width: 41px;
+`;
 const styles = theme => {
   return {
     root: {
@@ -84,7 +91,7 @@ const styles = theme => {
       },
       fontWeight: 'lighter',
       fontStyle: 'italic',
-      color: 'black'
+      color: 'white'
     },
     sectionDesktop: {
       display: 'none',
@@ -243,6 +250,7 @@ class AppBarComponent extends React.Component {
                 )}
               </div>
             </span>
+            <GiphyLogo />
           </Toolbar>
         </AppBar>
       </div>
