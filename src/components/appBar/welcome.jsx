@@ -32,13 +32,13 @@ const styles = theme => ({
 });
 
 function Welcome(props) {
-  const { classes, url } = props;
+  const { classes, url, routeName } = props;
 
   return (
     <div>
       <Paper className={classes.root} elevation={1}>
         <Typography className={classes.h5} variant="h5" component="h3">
-          Welcome to Giphy Hub
+          {`Welcome to ${routeName === 'home' ? 'Giphy Hub' : `${routeName} section`}`}
         </Typography>
         <GifBackground url={url} />
         <Typography className={classes.h5} variant="h5" component="h3">
@@ -51,7 +51,8 @@ function Welcome(props) {
 
 Welcome.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  routeName: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(Welcome);

@@ -156,6 +156,7 @@ class AppBarComponent extends React.Component {
     const { handleState } = this.props;
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
     handleState({ key: 'text', value: '' });
+    this.searchField.value = '';
   };
 
   render() {
