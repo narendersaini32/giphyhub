@@ -20,10 +20,10 @@ export default async function fetchCall(route, searchText, loadMore, clear) {
     } else if (loadMore) {
       if (text) {
         url = `https://api.giphy.com/v1/${type}?q=${text}&api_key=${giphyApiKey}&limit=10&offset=${count *
-          11}}&rating=g`;
+          11}&rating=g`;
       } else {
         url = `https://api.giphy.com/v1/${type}?api_key=${giphyApiKey}&limit=10&offset=${count *
-          11}}&rating=g`;
+          11}&rating=g`;
       }
     } else {
       url = `https://api.giphy.com/v1/${type}?&api_key=${giphyApiKey}&limit=4&rating=g`;
