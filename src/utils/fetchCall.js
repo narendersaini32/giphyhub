@@ -26,7 +26,7 @@ export default async function fetchCall(route, searchText, loadMore, clear) {
           11}&rating=g`;
       }
     } else {
-      url = `https://api.giphy.com/v1/${type}?&api_key=${giphyApiKey}&limit=4&rating=g`;
+      url = `https://api.giphy.com/v1/${type}?&api_key=${giphyApiKey}&limit=10&rating=g`;
     }
     let result = await fetch(url);
     result = await result.json();
