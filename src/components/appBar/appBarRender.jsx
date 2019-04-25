@@ -141,7 +141,8 @@ const styles = theme => {
     appBarRoot: {},
     fabButtonRoot: {
       margin: theme.spacing.unit,
-      minWidth: '153px !important'
+      minWidth: '153px !important',
+      color: theme.palette.secondary.dark
     }
   };
 };

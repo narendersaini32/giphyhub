@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBarComponent from './appBarRender';
 import GifCard from '../gifCard';
 import { fetchCall, findRoute } from '../../utils';
+import Welcome from './welcome';
 
 const styles = theme => {
   return {
@@ -35,7 +36,7 @@ const styles = theme => {
       fontWeight: 'bold',
       textTransform: 'uppercase',
       WebkitFontSmoothing: 'antialiased',
-      color: 'rgb(166, 166, 166)',
+      color: theme.palette.secondary.dark,
       marginBottom: '6px',
       marginLeft: '65px'
     }
@@ -71,8 +72,7 @@ class AppBar extends PureComponent {
   render() {
     const { data = [], isLoading, error, text } = this.state;
     const { location, classes } = this.props;
-    let gifType = findRoute(location);
-    gifType = gifType === 'home' ? 'trending' : gifType;
+    const gifType = findRoute(location);
     return (
       <Fragment>
         <AppBarComponent
@@ -87,12 +87,12 @@ class AppBar extends PureComponent {
         {isLoading && <LinearProgress />}
         <Wrapper className={classes.backgroundColor}>
           <Typography variant="h5" className={classes.gifType}>
-            {`${text || gifType} Gifs`}
+            {`${text || gifType} ${!text === 'home' ? 'gifs' : ''}`}
           </Typography>
           <FlexBox>
-            {error || !data.length ? (
+            {error || data.length <= 1 ? (
               <Typography variant="h5" className={classes.gifType}>
-                {error || 'Please Search Something'}
+                {error || <Welcome url={data.length === 1 && data[0].images.downsized.url} />}
               </Typography>
             ) : (
               data.map(obj => {
@@ -105,7 +105,7 @@ class AppBar extends PureComponent {
               })
             )}
           </FlexBox>
-          {!error && data.length > 0 && (
+          {!error && data.length > 1 && (
             <button
               type="button"
               className={classes.button}

@@ -31,23 +31,25 @@ const styles = theme => {
 };
 
 function GifCard(props) {
-  const { classes, url } = props;
+  const { classes, url, downloadButton } = props;
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia className={classes.media} image={`${url}`} />
       </CardActionArea>
       <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          className={classes.buttonRoot}
-          onClick={() => {
-            window.open(url); // eslint-disable-line
-          }}
-        >
-          Download
-        </Button>
+        {downloadButton && (
+          <Button
+            size="small"
+            color="primary"
+            className={classes.buttonRoot}
+            onClick={() => {
+              window.open(url); // eslint-disable-line
+            }}
+          >
+            Download
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
@@ -55,7 +57,11 @@ function GifCard(props) {
 
 GifCard.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  downloadButton: PropTypes.bool
+};
+GifCard.defaultProps = {
+  downloadButton: true
 };
 
 export default withStyles(styles)(GifCard);
