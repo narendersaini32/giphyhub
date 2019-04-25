@@ -12,7 +12,8 @@ export default async function fetchCall(route, searchText, loadMore, clear) {
   } else if (routeName === 'sticker') {
     type = searchText ? 'stickers/search' : 'stickers/trending';
   } else if (routeName === 'translate') {
-    type = 'gifs/translate';
+    type = searchText ? 'gifs/translate' : 'gifs/trending';
+    limit = searchText ? 10 : 1;
   }
   this.setState({ isLoading: true });
   try {

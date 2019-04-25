@@ -42,7 +42,7 @@ function Welcome(props) {
         </Typography>
         <GifBackground url={url} />
         <Typography className={classes.h5} variant="h5" component="h3">
-          Search to Gifs
+          Type to search Gif...
         </Typography>
       </Paper>
     </div>

@@ -38,7 +38,8 @@ const styles = theme => {
       WebkitFontSmoothing: 'antialiased',
       color: theme.palette.secondary.dark,
       marginBottom: '6px',
-      marginLeft: '65px'
+      marginLeft: '65px',
+      paddingTop: '36px'
     }
   };
 };
@@ -69,10 +70,16 @@ class AppBar extends PureComponent {
     fetchCall.call(this, location);
   }
 
+  handleState = ({ key, value }) => {
+    this.setState({ [key]: value });
+  };
+
   render() {
     const { data = [], isLoading, error, text } = this.state;
     const { location, classes } = this.props;
     const gifType = findRoute(location);
+    const heading = gifType === 'home' && !text ? 'Welcome' : `${text || gifType} gifs`;
+
     return (
       <Fragment>
         <AppBarComponent
@@ -83,16 +90,17 @@ class AppBar extends PureComponent {
           onCloseIconClick={() => {
             fetchCall.call(this, location, '', false, true);
           }}
+          handleState={this.handleState}
         />
         {isLoading && <LinearProgress />}
         <Wrapper className={classes.backgroundColor}>
           <Typography variant="h5" className={classes.gifType}>
-            {`${text || gifType} ${!text === 'home' ? 'gifs' : ''}`}
+            {heading}
           </Typography>
           <FlexBox>
             {error || data.length <= 1 ? (
               <Typography variant="h5" className={classes.gifType}>
-                {error || <Welcome url={data.length === 1 && data[0].images.downsized.url} />}
+                {error || <Welcome url={data.length === 1 ? data[0].images.downsized.url : ''} />}
               </Typography>
             ) : (
               data.map(obj => {

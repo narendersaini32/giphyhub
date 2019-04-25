@@ -17,8 +17,10 @@ import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import MenuIcon from '@material-ui/icons/Menu';
 import styled from 'styled-components';
+import { Hidden } from '../reuseableComponents';
 
 const drawerWidth = 240;
+
 const GiphyLogo = styled.div`
   height: 54px;
   background-image: url(poweredbyGiphy.gif);
@@ -57,10 +59,6 @@ const styles = theme => {
         backgroundColor: fade(theme.palette.common.white, 0.25)
       },
       width: '100%',
-      minWidth: '200px',
-      [theme.breakpoints.up('sm')]: {
-        width: 'auto'
-      },
       boxShadow:
         '0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)',
       borderRadius: '24px',
@@ -133,7 +131,7 @@ const styles = theme => {
       display: 'flex',
       height: '35px',
       justifyContent: 'flex-end',
-      margin: 'auto'
+      width: '100%'
     },
     link: {
       textDecoration: 'none'
@@ -155,7 +153,9 @@ class AppBarComponent extends React.Component {
   }
 
   handleDrawerToggle = () => {
+    const { handleState } = this.props;
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+    handleState({ key: 'text', value: '' });
   };
 
   render() {
@@ -237,20 +237,18 @@ class AppBarComponent extends React.Component {
                   }}
                 />
               </div>
-              <div>
-                {text && (
-                  <IconButton
-                    className={classes.menuButton}
-                    color="inherit"
-                    onClick={() => {
-                      this.searchField.value = '';
-                      onCloseIconClick();
-                    }}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                )}
-              </div>
+              <Hidden hidden={!text}>
+                <IconButton
+                  className={classes.menuButton}
+                  color="inherit"
+                  onClick={() => {
+                    this.searchField.value = '';
+                    onCloseIconClick();
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </Hidden>
             </span>
             <GiphyLogo />
           </Toolbar>
@@ -264,7 +262,8 @@ AppBarComponent.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   onSearch: PropTypes.func.isRequired,
   text: PropTypes.string,
-  onCloseIconClick: PropTypes.func.isRequired
+  onCloseIconClick: PropTypes.func.isRequired,
+  handleState: PropTypes.func.isRequired
 };
 AppBarComponent.defaultProps = {
   text: ''
