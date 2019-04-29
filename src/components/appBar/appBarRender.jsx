@@ -140,7 +140,15 @@ const styles = theme => {
     fabButtonRoot: {
       margin: theme.spacing.unit,
       minWidth: '153px !important',
-      color: theme.palette.secondary.dark
+      color: theme.palette.secondary.dark,
+      backgroundColor: theme.palette.primary.main,
+      boxShadow: 'none',
+      display: 'flex',
+      justifyContent: 'flex-start',
+      '&:hover': {
+        color: 'white',
+        backgroundColor: theme.palette.primary.light
+      }
     }
   };
 };

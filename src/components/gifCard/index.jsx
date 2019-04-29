@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 const styles = theme => {
   return {
     card: {
+      backgroundColor: theme.palette.primary.light,
       maxWidth: 345,
       margin: 10,
       minWidth: 222,

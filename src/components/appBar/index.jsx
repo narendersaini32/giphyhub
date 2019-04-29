@@ -14,7 +14,7 @@ const styles = theme => {
     button: {
       display: 'block',
       fontSize: '1em',
-      color: '#fff',
+      color: theme.palette.primary.light,
       fontWeight: 500,
       textTransform: 'uppercase',
       fontFamily: '$sans',
@@ -26,7 +26,11 @@ const styles = theme => {
       borderRadius: 9,
       backgroundColor: theme.palette.primary.main,
       outline: 'none',
-      border: `1 solid ${theme.palette.secondary.main}`
+      border: `1px solid ${theme.palette.primary.light}`,
+      '&:hover': {
+        border: '1px solid white',
+        color: 'white'
+      }
     },
     backgroundColor: {
       backgroundColor: theme.palette.primary.main
