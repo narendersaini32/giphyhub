@@ -82,7 +82,7 @@ class AppBar extends PureComponent {
     const { data = [], isLoading, error, text } = this.state;
     const { location, classes } = this.props;
     const gifType = findRoute(location);
-    const heading = gifType === 'home' && !text ? 'Welcome' : `${text || gifType} gifs`;
+    const heading = gifType === 'home' && !text ? '' : `${text || gifType} gifs`;
 
     return (
       <Fragment>

@@ -18,7 +18,10 @@ const styles = theme => ({
     position: 'absolute',
     left: '50%',
     top: '50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
+    [theme.breakpoints.down('sm')]: {
+      top: '57%'
+    }
   },
   h5: {
     textAlign: 'center',

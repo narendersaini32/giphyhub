@@ -16,7 +16,7 @@ const styles = theme => {
       minWidth: 222,
       transition: 'all 0.5s ease-in-out',
       '&:hover': {
-        transform: 'scale(1.5)',
+        transform: 'scale(1.1)',
         zIndex: 4
       }
     },
