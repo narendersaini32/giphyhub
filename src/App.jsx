@@ -6,7 +6,8 @@ import './App.css';
 
 const App = () => {
   // disable loader
-  document.getElementById('loader').style.display = 'none';
+  const Loader = document.getElementById('loader');
+  if (Loader) Loader.style.display = 'none';
   return (
     <Router>
       <Switch>
