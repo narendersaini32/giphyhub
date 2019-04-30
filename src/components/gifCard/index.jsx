@@ -7,28 +7,50 @@ import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 
-const styles = {
-  card: {
-    maxWidth: 345,
-    margin: 10,
-    minWidth: 222
-  },
-  media: {
-    height: 246
-  }
+const styles = theme => {
+  return {
+    card: {
+      backgroundColor: theme.palette.primary.light,
+      maxWidth: 345,
+      margin: 10,
+      minWidth: 222,
+      transition: 'all 0.5s ease-in-out',
+      '&:hover': {
+        transform: 'scale(1.1)',
+        zIndex: 4
+      }
+    },
+    media: {
+      height: 246,
+      backgroundSize: 'cover',
+      backgroundColor: theme.palette.primary.main
+    },
+    buttonRoot: {
+      margin: 'auto'
+    }
+  };
 };
 
 function GifCard(props) {
-  const { classes, url } = props;
+  const { classes, url, downloadButton } = props;
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia className={classes.media} image={`${url}`} title="Contemplative Reptile" />
+        <CardMedia className={classes.media} image={`${url}`} />
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Download
-        </Button>
+        {downloadButton && (
+          <Button
+            size="small"
+            color="primary"
+            className={classes.buttonRoot}
+            onClick={() => {
+              window.open(url); // eslint-disable-line
+            }}
+          >
+            Download
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
@@ -36,7 +58,11 @@ function GifCard(props) {
 
 GifCard.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  downloadButton: PropTypes.bool
+};
+GifCard.defaultProps = {
+  downloadButton: true
 };
 
 export default withStyles(styles)(GifCard);

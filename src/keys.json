@@ -1,3 +1,6 @@
 {
-    "giphyApiKey":"FyIGrVHWHbZIJHSwBsiGZat60OwKsqGs"
+    "giphyApiKey":"FyIGrVHWHbZIJHSwBsiGZat60OwKsqGs",
+    "giphyApiUrl":"https://api.giphy.com/v1/",
+    "tenorApiUrl":"https://api.tenor.com/v1/",
+    "tenorApiKey":"C1ZOGABZNZOH"
 }
