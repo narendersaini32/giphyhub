@@ -1,10 +1,13 @@
 # [Start Giphyhub ](http://giphyhub.netlify.com)
 
-[Giphyhub](http://giphyhub.netlify.com) is a project developed using[Giphy Developer API](https://developers.giphy.com/docs/) created by [Narender Saini](https://github.com/narendersaini32).
+[Giphyhub](http://giphyhub.netlify.com) is a project developed using [Giphy Developer API](https://developers.giphy.com/docs/) created by [Narender Saini](https://github.com/narendersaini32).
 
 ## Preview
 
 [![Giphyhub Preview](https://media.giphy.com/media/fV1miku5pw4CWqgZDf/giphy.gif)](http://giphyhub.netlify.com)
+
+[![Giphyhub Menu](https://media.giphy.com/media/Sr8YzHu1M3mahOVGZG/giphy.gif)](http://giphyhub.netlify.com)
+
 
 **[View Live Preview](http://giphyhub.netlify.com)**
 
