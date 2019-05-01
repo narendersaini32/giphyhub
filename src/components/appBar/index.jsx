@@ -44,6 +44,10 @@ const styles = theme => {
       marginBottom: '6px',
       marginLeft: '65px',
       paddingTop: '36px'
+    },
+    linearSearch: {
+      zIndex: 2,
+      top: 63
     }
   };
 };
@@ -96,7 +100,7 @@ class AppBar extends PureComponent {
           }}
           handleState={this.handleState}
         />
-        {isLoading && <LinearProgress />}
+        {isLoading && <LinearProgress className={classes.linearSearch} />}
         <Wrapper className={classes.backgroundColor}>
           <Typography variant="h5" className={classes.gifType}>
             {heading}
@@ -104,12 +108,13 @@ class AppBar extends PureComponent {
           <FlexBox>
             {error || data.length <= 1 ? (
               <Typography variant="h5" className={classes.gifType}>
-                {error || (
-                  <Welcome
-                    url={data.length === 1 ? data[0].images.downsized.url : ''}
-                    routeName={gifType}
-                  />
-                )}
+                {error ||
+                  (gifType !== 'home' && (
+                    <Welcome
+                      url={data.length === 1 ? data[0].images.downsized.url : ''}
+                      routeName={gifType}
+                    />
+                  ))}
               </Typography>
             ) : (
               data.map(obj => {

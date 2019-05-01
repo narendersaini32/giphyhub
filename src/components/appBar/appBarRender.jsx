@@ -10,7 +10,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 import Fab from '@material-ui/core/Fab';
 import Home from '@material-ui/icons/Home';
-import Trending from '@material-ui/icons/TrendingUp';
 import Sticker from '@material-ui/icons/Message';
 import Translate from '@material-ui/icons/Translate';
 import { Link } from 'react-router-dom';
@@ -178,12 +177,6 @@ class AppBarComponent extends React.Component {
           <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
             <Home className={classes.extendedIcon} />
             Home
-          </Fab>
-        </Link>
-        <Link to="/trending" className={classes.link} onClick={this.handleDrawerToggle}>
-          <Fab variant="extended" size="medium" aria-label="Add" className={classes.fabButtonRoot}>
-            <Trending className={classes.extendedIcon} />
-            Trending
           </Fab>
         </Link>
         <Link to="/sticker" className={classes.link} onClick={this.handleDrawerToggle}>

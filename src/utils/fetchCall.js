@@ -3,23 +3,23 @@ import { findRoute } from './index';
 
 export default async function fetchCall(route, searchText, loadMore, clear) {
   const { count = 1, data, text } = this.state;
+  let queryText = searchText;
   const routeName = findRoute(route);
   let type = 'gifs/trending';
-  let limit = 10;
+  const limit = 10;
   if (routeName === 'home') {
-    type = searchText ? 'gifs/search' : 'gifs/trending';
-    limit = !searchText && 1;
+    type = queryText ? 'gifs/search' : 'gifs/trending';
   } else if (routeName === 'sticker') {
-    type = searchText ? 'stickers/search' : 'stickers/trending';
+    type = queryText ? 'stickers/search' : 'stickers/trending';
   } else if (routeName === 'translate') {
-    type = searchText ? 'gifs/translate' : 'gifs/trending';
-    limit = searchText ? 10 : 1;
+    type = 'gifs/translate';
+    queryText = queryText || 'naruto';
   }
   this.setState({ isLoading: true });
   try {
     let url;
-    if (searchText) {
-      url = `https://api.giphy.com/v1/${type}?q=${searchText}&api_key=${giphyApiKey}&limit=${limit}&s=${searchText}&rating=g`;
+    if (queryText) {
+      url = `https://api.giphy.com/v1/${type}?q=${queryText}&api_key=${giphyApiKey}&limit=${limit}&s=${searchText}&rating=g`;
     } else if (loadMore) {
       if (text) {
         url = `https://api.giphy.com/v1/${type}?q=${text}&api_key=${giphyApiKey}&limit=${limit}&offset=${count *
