@@ -11,13 +11,13 @@ const styles = theme => {
   return {
     card: {
       backgroundColor: theme.palette.primary.light,
-      maxWidth: 345,
+      maxWidth: 324,
       margin: 10,
       minWidth: 222,
       height: 'fit-content',
       transition: 'all 0.5s ease-in-out',
       '&:hover': {
-        transform: 'scale(1.1)',
+        transform: 'scale(1.02)',
         zIndex: 4
       }
     },

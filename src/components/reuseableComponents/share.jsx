@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 const Wave = styled.div``;
 class Share extends PureComponent {
@@ -18,7 +19,7 @@ class Share extends PureComponent {
     const { url } = this.props;
     const { showAll } = this.state;
     return (
-      <div className="shareMain">
+      <div className="shareMain" id="shareMain">
         <a
           className="resp-sharing-button__link"
           href={`https://facebook.com/sharer/sharer.php?u=${url}`}
@@ -274,12 +275,13 @@ class Share extends PureComponent {
                 </div>
               </div>
             </a>
+            <Wave id="wave" onClick={this.toggleShowAll}>
+              <ExpandLess />
+            </Wave>
           </Fragment>
         ) : (
           <Wave id="wave" onClick={this.toggleShowAll}>
-            <span className="dot" />
-            <span className="dot" />
-            <span className="dot" />
+            <ExpandMore />
           </Wave>
         )}
       </div>

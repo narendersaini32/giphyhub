@@ -311,7 +311,7 @@
 .shareMain {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -331,4 +331,3 @@ div#wave .dot {
   margin-right: 3px;
   background: rgb(166, 166, 166);
 }
-

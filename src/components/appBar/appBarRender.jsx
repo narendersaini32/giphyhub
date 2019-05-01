@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import MenuIcon from '@material-ui/icons/Menu';
 import styled from 'styled-components';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { Hidden } from '../reuseableComponents';
 
 const drawerWidth = 240;
@@ -169,7 +170,7 @@ class AppBarComponent extends React.Component {
   };
 
   render() {
-    const { classes, onSearch, text, onCloseIconClick } = this.props;
+    const { classes, onSearch, text, onCloseIconClick, isLoading } = this.props;
     const { mobileOpen } = this.state;
     const drawer = (
       <div>
@@ -257,6 +258,7 @@ class AppBarComponent extends React.Component {
             <GiphyLogo />
           </Toolbar>
         </AppBar>
+        {isLoading && <LinearProgress className={classes.linearSearch} />}
       </div>
     );
   }
@@ -267,7 +269,8 @@ AppBarComponent.propTypes = {
   onSearch: PropTypes.func.isRequired,
   text: PropTypes.string,
   onCloseIconClick: PropTypes.func.isRequired,
-  handleState: PropTypes.func.isRequired
+  handleState: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 AppBarComponent.defaultProps = {
   text: ''

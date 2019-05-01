@@ -1,9 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
 import Styled from 'styled-components';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import $ from 'jquery';
 import AppBarComponent from './appBarRender';
 import GifCard from '../gifCard';
 import { fetchCall, findRoute } from '../../utils';
@@ -11,27 +11,6 @@ import Welcome from './welcome';
 
 const styles = theme => {
   return {
-    button: {
-      display: 'block',
-      fontSize: '1em',
-      color: theme.palette.primary.light,
-      fontWeight: 500,
-      textTransform: 'uppercase',
-      fontFamily: '$sans',
-      cursor: 'pointer',
-      height: 38,
-      margin: 'auto',
-      position: 'relative',
-      bottom: 5,
-      borderRadius: 9,
-      backgroundColor: theme.palette.primary.main,
-      outline: 'none',
-      border: `1px solid ${theme.palette.primary.light}`,
-      '&:hover': {
-        border: '1px solid white',
-        color: 'white'
-      }
-    },
     backgroundColor: {
       backgroundColor: theme.palette.primary.main
     },
@@ -46,10 +25,6 @@ const styles = theme => {
       paddingTop: '36px',
       top: 40,
       position: 'absolute'
-    },
-    linearSearch: {
-      zIndex: 2,
-      top: 63
     }
   };
 };
@@ -75,6 +50,11 @@ class AppBar extends PureComponent {
   componentWillMount() {
     const { location } = this.props;
     fetchCall.call(this, location);
+    $(document).on('scroll', () => {
+      if ($(document).height() - $(document).scrollTop() - $(window).height() < 50) {
+        fetchCall.call(this, location, '', true);
+      }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -103,8 +83,8 @@ class AppBar extends PureComponent {
             fetchCall.call(this, location, '', false, true);
           }}
           handleState={this.handleState}
+          isLoading={isLoading}
         />
-        {isLoading && <LinearProgress className={classes.linearSearch} />}
         <Wrapper className={classes.backgroundColor}>
           <Typography variant="h5" className={classes.gifType}>
             {heading}
@@ -129,17 +109,6 @@ class AppBar extends PureComponent {
                 } = obj;
                 return <GifCard url={url} key={url} />;
               })
-            )}
-            {!error && data.length > 1 && (
-              <button
-                type="button"
-                className={classes.button}
-                onClick={() => {
-                  fetchCall.call(this, location, '', true);
-                }}
-              >
-                Load More
-              </button>
             )}
           </FlexBox>
         </Wrapper>
