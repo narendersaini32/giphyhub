@@ -17,8 +17,7 @@ const styles = theme => {
       height: 'fit-content',
       transition: 'all 0.5s ease-in-out',
       '&:hover': {
-        transform: 'scale(1.02)',
-        zIndex: 4
+        transform: 'scale(1.02)'
       }
     },
     media: {
