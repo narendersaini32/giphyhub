@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+import { Share } from '../reuseableComponents';
 
 const styles = theme => {
   return {
@@ -38,20 +38,7 @@ function GifCard(props) {
       <CardActionArea>
         <CardMedia className={classes.media} image={`${url}`} />
       </CardActionArea>
-      <CardActions>
-        {downloadButton && (
-          <Button
-            size="small"
-            color="primary"
-            className={classes.buttonRoot}
-            onClick={() => {
-              window.open(url); // eslint-disable-line
-            }}
-          >
-            Download
-          </Button>
-        )}
-      </CardActions>
+      <CardActions>{downloadButton && <Share url={url} />}</CardActions>
     </Card>
   );
 }
