@@ -44,9 +44,6 @@ function Welcome(props) {
           {`Welcome to ${routeName === 'home' ? 'Giphy Hub' : `${routeName} section`}`}
         </Typography>
         <GifBackground url={url} />
-        <Typography className={classes.h5} variant="h5" component="h3">
-          Type to search Gif...
-        </Typography>
       </Paper>
     </div>
   );
