@@ -43,7 +43,9 @@ const styles = theme => {
       color: theme.palette.secondary.dark,
       marginBottom: '6px',
       marginLeft: '65px',
-      paddingTop: '36px'
+      paddingTop: '36px',
+      top: 40,
+      position: 'absolute'
     },
     linearSearch: {
       zIndex: 2,
@@ -60,6 +62,8 @@ display: flex;
 flex-wrap: wrap;
 padding: 10px;
 justify-content: space-evenly;
+position: absolute;
+top: 100px;
 `;
 
 class AppBar extends PureComponent {
@@ -86,7 +90,7 @@ class AppBar extends PureComponent {
     const { data = [], isLoading, error, text } = this.state;
     const { location, classes } = this.props;
     const gifType = findRoute(location);
-    const heading = gifType === 'home' && !text ? '' : `${text || gifType} gifs`;
+    const heading = gifType === 'home' && !text ? 'Trending' : `${text || gifType} gifs`;
 
     return (
       <Fragment>
@@ -105,7 +109,7 @@ class AppBar extends PureComponent {
           <Typography variant="h5" className={classes.gifType}>
             {heading}
           </Typography>
-          <FlexBox>
+          <FlexBox className={classes.backgroundColor}>
             {error || data.length <= 1 ? (
               <Typography variant="h5" className={classes.gifType}>
                 {error ||
@@ -126,18 +130,18 @@ class AppBar extends PureComponent {
                 return <GifCard url={url} key={url} />;
               })
             )}
+            {!error && data.length > 1 && (
+              <button
+                type="button"
+                className={classes.button}
+                onClick={() => {
+                  fetchCall.call(this, location, '', true);
+                }}
+              >
+                Load More
+              </button>
+            )}
           </FlexBox>
-          {!error && data.length > 1 && (
-            <button
-              type="button"
-              className={classes.button}
-              onClick={() => {
-                fetchCall.call(this, location, '', true);
-              }}
-            >
-              Load More
-            </button>
-          )}
         </Wrapper>
       </Fragment>
     );
