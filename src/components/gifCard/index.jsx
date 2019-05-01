@@ -14,6 +14,7 @@ const styles = theme => {
       maxWidth: 345,
       margin: 10,
       minWidth: 222,
+      height: 'fit-content',
       transition: 'all 0.5s ease-in-out',
       '&:hover': {
         transform: 'scale(1.1)',

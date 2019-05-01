@@ -320,6 +320,9 @@ div#wave {
   text-align: center;
   width: 82px;
 }
+div#wave:hover {
+  cursor: pointer;
+}
 div#wave .dot {
   display: inline-block;
   width: 7px;

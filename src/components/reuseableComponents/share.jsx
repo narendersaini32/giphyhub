@@ -1,11 +1,20 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
+const Wave = styled.div``;
 class Share extends PureComponent {
   state = { showAll: false };
 
+  toggleShowAll = () => {
+    this.setState(({ showAll }) => {
+      return {
+        showAll: !showAll
+      };
+    });
+  };
+
   render() {
-    console.log(': Share -> render -> this.props', this.props);
     const { url } = this.props;
     const { showAll } = this.state;
     return (
@@ -29,6 +38,43 @@ class Share extends PureComponent {
         </a>
         <a
           className="resp-sharing-button__link"
+          href={`whatsapp://send?text=http://giphyhub.netlify.com%20${url}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small">
+            <div
+              aria-hidden="true"
+              className="resp-sharing-button__icon resp-sharing-button__icon--solidcircle"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" height={24} width={24} viewBox="0 0 24 24">
+                <path d="m12 0c-6.6 0-12 5.4-12 12s5.4 12 12 12 12-5.4 12-12-5.4-12-12-12zm0 3.8c2.2 0 4.2 0.9 5.7 2.4 1.6 1.5 2.4 3.6 2.5 5.7 0 4.5-3.6 8.1-8.1 8.1-1.4 0-2.7-0.4-3.9-1l-4.4 1.1 1.2-4.2c-0.8-1.2-1.1-2.6-1.1-4 0-4.5 3.6-8.1 8.1-8.1zm0.1 1.5c-3.7 0-6.7 3-6.7 6.7 0 1.3 0.3 2.5 1 3.6l0.1 0.3-0.7 2.4 2.5-0.7 0.3 0.099c1 0.7 2.2 1 3.4 1 3.7 0 6.8-3 6.9-6.6 0-1.8-0.7-3.5-2-4.8s-3-2-4.8-2zm-3 2.9h0.4c0.2 0 0.4-0.099 0.5 0.3s0.5 1.5 0.6 1.7 0.1 0.2 0 0.3-0.1 0.2-0.2 0.3l-0.3 0.3c-0.1 0.1-0.2 0.2-0.1 0.4 0.2 0.2 0.6 0.9 1.2 1.4 0.7 0.7 1.4 0.9 1.6 1 0.2 0 0.3 0.001 0.4-0.099s0.5-0.6 0.6-0.8c0.2-0.2 0.3-0.2 0.5-0.1l1.4 0.7c0.2 0.1 0.3 0.2 0.5 0.3 0 0.1 0.1 0.5-0.099 1s-1 0.9-1.4 1c-0.3 0-0.8 0.001-1.3-0.099-0.3-0.1-0.7-0.2-1.2-0.4-2.1-0.9-3.4-3-3.5-3.1s-0.8-1.1-0.8-2.1c0-1 0.5-1.5 0.7-1.7s0.4-0.3 0.5-0.3z" />
+              </svg>
+            </div>
+          </div>
+        </a>
+        <a
+          className="resp-sharing-button__link"
+          href={`https://telegram.me/share/url?text=http://giphyhub.netlify.com&url=${url}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small">
+            <div
+              aria-hidden="true"
+              className="resp-sharing-button__icon resp-sharing-button__icon--solidcircle"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M12 23.5c6.35 0 11.5-5.15 11.5-11.5S18.35.5 12 .5.5 5.65.5 12 5.65 23.5 12 23.5zM2.505 11.053c-.31.118-.505.738-.505.738s.203.62.513.737l3.636 1.355 1.417 4.557a.787.787 0 0 0 1.25.375l2.115-1.72a.29.29 0 0 1 .353-.01L15.1 19.85a.786.786 0 0 0 .746.095.786.786 0 0 0 .487-.573l2.793-13.426a.787.787 0 0 0-1.054-.893l-15.568 6z"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </a>
+        <a
+          className="resp-sharing-button__link"
           href={`https://twitter.com/intent/tweet/?text=http://giphyhub.netlify.com&url=${url}`}
           target="_blank"
           rel="noopener noreferrer"
@@ -44,26 +90,27 @@ class Share extends PureComponent {
             </div>
           </div>
         </a>
-        <a
-          className="resp-sharing-button__link"
-          href={`https://plus.google.com/share?url=${url}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div className="resp-sharing-button resp-sharing-button--google resp-sharing-button--small">
-            <div
-              aria-hidden="true"
-              className="resp-sharing-button__icon resp-sharing-button__icon--solidcircle"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z" />
-                <path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z" />
-              </svg>
-            </div>
-          </div>
-        </a>
+
         {showAll ? (
-          <div>
+          <Fragment>
+            <a
+              className="resp-sharing-button__link"
+              href={`https://plus.google.com/share?url=${url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="resp-sharing-button resp-sharing-button--google resp-sharing-button--small">
+                <div
+                  aria-hidden="true"
+                  className="resp-sharing-button__icon resp-sharing-button__icon--solidcircle"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12.65 8.6c-.02-.66-.3-1.3-.8-1.8S10.67 6 9.98 6c-.63 0-1.2.25-1.64.68-.45.44-.68 1.05-.66 1.7.02.68.3 1.32.8 1.8.96.97 2.6 1.04 3.5.14.45-.45.7-1.05.67-1.7zm-2.5 5.63c-2.14 0-3.96.95-3.96 2.1 0 1.12 1.8 2.08 3.94 2.08s3.98-.93 3.98-2.06c0-1.14-1.82-2.1-3.98-2.1z" />
+                    <path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm-1.84 19.4c-2.8 0-4.97-1.35-4.97-3.08s2.15-3.1 4.94-3.1c.84 0 1.6.14 2.28.36-.57-.4-1.25-.86-1.3-1.7-.26.06-.52.1-.8.1-.95 0-1.87-.38-2.57-1.08-.67-.68-1.06-1.55-1.1-2.48-.02-.94.32-1.8.96-2.45.65-.63 1.5-.93 2.4-.92V5h3.95v1h-1.53l.12.1c.67.67 1.06 1.55 1.1 2.48.02.93-.32 1.8-.97 2.45-.16.15-.33.3-.5.4-.2.6.05.8.83 1.33.9.6 2.1 1.42 2.1 3.56 0 1.73-2.17 3.1-4.96 3.1zM20 10h-2v2h-1v-2h-2V9h2V7h1v2h2v1z" />
+                  </svg>
+                </div>
+              </div>
+            </a>
             <a
               className="resp-sharing-button__link"
               href={`https://www.tumblr.com/widgets/share/tool?posttype=link&title=http://giphyhub.netlify.com&caption=http://giphyhub.netlify.com&content=${url}&canonicalUrl=${url}&shareSource=tumblr_share_button`}
@@ -189,28 +236,7 @@ class Share extends PureComponent {
                 </div>
               </div>
             </a>
-            <a
-              className="resp-sharing-button__link"
-              href={`whatsapp://send?text=http://giphyhub.netlify.com%20${url}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small">
-                <div
-                  aria-hidden="true"
-                  className="resp-sharing-button__icon resp-sharing-button__icon--solidcircle"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height={24}
-                    width={24}
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="m12 0c-6.6 0-12 5.4-12 12s5.4 12 12 12 12-5.4 12-12-5.4-12-12-12zm0 3.8c2.2 0 4.2 0.9 5.7 2.4 1.6 1.5 2.4 3.6 2.5 5.7 0 4.5-3.6 8.1-8.1 8.1-1.4 0-2.7-0.4-3.9-1l-4.4 1.1 1.2-4.2c-0.8-1.2-1.1-2.6-1.1-4 0-4.5 3.6-8.1 8.1-8.1zm0.1 1.5c-3.7 0-6.7 3-6.7 6.7 0 1.3 0.3 2.5 1 3.6l0.1 0.3-0.7 2.4 2.5-0.7 0.3 0.099c1 0.7 2.2 1 3.4 1 3.7 0 6.8-3 6.9-6.6 0-1.8-0.7-3.5-2-4.8s-3-2-4.8-2zm-3 2.9h0.4c0.2 0 0.4-0.099 0.5 0.3s0.5 1.5 0.6 1.7 0.1 0.2 0 0.3-0.1 0.2-0.2 0.3l-0.3 0.3c-0.1 0.1-0.2 0.2-0.1 0.4 0.2 0.2 0.6 0.9 1.2 1.4 0.7 0.7 1.4 0.9 1.6 1 0.2 0 0.3 0.001 0.4-0.099s0.5-0.6 0.6-0.8c0.2-0.2 0.3-0.2 0.5-0.1l1.4 0.7c0.2 0.1 0.3 0.2 0.5 0.3 0 0.1 0.1 0.5-0.099 1s-1 0.9-1.4 1c-0.3 0-0.8 0.001-1.3-0.099-0.3-0.1-0.7-0.2-1.2-0.4-2.1-0.9-3.4-3-3.5-3.1s-0.8-1.1-0.8-2.1c0-1 0.5-1.5 0.7-1.7s0.4-0.3 0.5-0.3z" />
-                  </svg>
-                </div>
-              </div>
-            </a>
+
             <a
               className="resp-sharing-button__link"
               href={`https://news.ycombinator.com/submitlink?u=${url}&t=http://giphyhub.netlify.com`}
@@ -248,33 +274,13 @@ class Share extends PureComponent {
                 </div>
               </div>
             </a>
-            <a
-              className="resp-sharing-button__link"
-              href={`https://telegram.me/share/url?text=http://giphyhub.netlify.com&url=${url}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small">
-                <div
-                  aria-hidden="true"
-                  className="resp-sharing-button__icon resp-sharing-button__icon--solidcircle"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M12 23.5c6.35 0 11.5-5.15 11.5-11.5S18.35.5 12 .5.5 5.65.5 12 5.65 23.5 12 23.5zM2.505 11.053c-.31.118-.505.738-.505.738s.203.62.513.737l3.636 1.355 1.417 4.557a.787.787 0 0 0 1.25.375l2.115-1.72a.29.29 0 0 1 .353-.01L15.1 19.85a.786.786 0 0 0 .746.095.786.786 0 0 0 .487-.573l2.793-13.426a.787.787 0 0 0-1.054-.893l-15.568 6z"
-                      fillRule="evenodd"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </a>
-          </div>
+          </Fragment>
         ) : (
-          <div id="wave">
+          <Wave id="wave" onClick={this.toggleShowAll}>
             <span className="dot" />
             <span className="dot" />
             <span className="dot" />
-          </div>
+          </Wave>
         )}
       </div>
     );
