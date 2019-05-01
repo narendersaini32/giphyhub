@@ -30,7 +30,9 @@ const GiphyLogo = styled.div`
 const styles = theme => {
   return {
     root: {
-      width: '100%'
+      width: '100%',
+      position: 'fixed',
+      zIndex: 1
     },
     grow: {
       flexGrow: 1
