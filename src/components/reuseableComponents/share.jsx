@@ -39,7 +39,7 @@ class Share extends PureComponent {
         </a>
         <a
           className="resp-sharing-button__link"
-          href={`whatsapp://send?text=http://giphyhub.netlify.com%20${url}`}
+          href={`whatsapp://send?text=GiphyHub%20${url}`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -56,7 +56,7 @@ class Share extends PureComponent {
         </a>
         <a
           className="resp-sharing-button__link"
-          href={`https://telegram.me/share/url?text=http://giphyhub.netlify.com&url=${url}`}
+          href={`https://telegram.me/share/url?text=GiphyHub&url=${url}`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -76,7 +76,7 @@ class Share extends PureComponent {
         </a>
         <a
           className="resp-sharing-button__link"
-          href={`https://twitter.com/intent/tweet/?text=http://giphyhub.netlify.com&url=${url}`}
+          href={`https://twitter.com/intent/tweet/?text=GiphyHub&url=${url}`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -114,7 +114,7 @@ class Share extends PureComponent {
             </a>
             <a
               className="resp-sharing-button__link"
-              href={`https://www.tumblr.com/widgets/share/tool?posttype=link&title=http://giphyhub.netlify.com&caption=http://giphyhub.netlify.com&content=${url}&canonicalUrl=${url}&shareSource=tumblr_share_button`}
+              href={`https://www.tumblr.com/widgets/share/tool?posttype=link&title=GiphyHub&caption=GiphyHub&content=${url}&canonicalUrl=${url}&shareSource=tumblr_share_button`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -140,7 +140,7 @@ class Share extends PureComponent {
             </a>
             <a
               className="resp-sharing-button__link"
-              href={`mailto:?subject=http://giphyhub.netlify.com&body=${url}`}
+              href={`mailto:?subject=GiphyHub&body=${url}`}
               target="_self"
               rel="noopener noreferrer"
             >
@@ -158,7 +158,7 @@ class Share extends PureComponent {
             </a>
             <a
               className="resp-sharing-button__link"
-              href={`https://pinterest.com/pin/create/button/?url=${url}&media=${url}&description=http://giphyhub.netlify.com`}
+              href={`https://pinterest.com/pin/create/button/?url=${url}&media=${url}&description=GiphyHub`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -175,7 +175,7 @@ class Share extends PureComponent {
             </a>
             <a
               className="resp-sharing-button__link"
-              href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=http://giphyhub.netlify.com&summary=http://giphyhub.netlify.com&source=${url}`}
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=GiphyHub&summary=GiphyHub&source=${url}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -201,7 +201,7 @@ class Share extends PureComponent {
             </a>
             <a
               className="resp-sharing-button__link"
-              href={`https://reddit.com/submit/?url=${url}&resubmit=true&title=http://giphyhub.netlify.com`}
+              href={`https://reddit.com/submit/?url=${url}&resubmit=true&title=GiphyHub`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -222,7 +222,7 @@ class Share extends PureComponent {
             </a>
             <a
               className="resp-sharing-button__link"
-              href={`https://www.xing.com/app/user?op=share;url=${url};title=http://giphyhub.netlify.com`}
+              href={`https://www.xing.com/app/user?op=share;url=${url};title=GiphyHub`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -240,7 +240,7 @@ class Share extends PureComponent {
 
             <a
               className="resp-sharing-button__link"
-              href={`https://news.ycombinator.com/submitlink?u=${url}&t=http://giphyhub.netlify.com`}
+              href={`https://news.ycombinator.com/submitlink?u=${url}&t=GiphyHub`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -260,7 +260,7 @@ class Share extends PureComponent {
             </a>
             <a
               className="resp-sharing-button__link"
-              href={`http://vk.com/share.php?title=http://giphyhub.netlify.com&url=${url}`}
+              href={`http://vk.com/share.php?title=GiphyHub&url=${url}`}
               target="_blank"
               rel="noopener noreferrer"
             >
