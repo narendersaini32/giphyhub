@@ -13,7 +13,7 @@ import Home from '@material-ui/icons/Home';
 import Sticker from '@material-ui/icons/Message';
 import Translate from '@material-ui/icons/Translate';
 import { Link } from 'react-router-dom';
-import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import MenuIcon from '@material-ui/icons/Menu';
 import styled from 'styled-components';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -206,18 +206,18 @@ class AppBarComponent extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Drawer
-              variant="temporary"
+            <SwipeableDrawer
               anchor="left"
               open={mobileOpen}
               color="primary"
+              onOpen={this.handleDrawerToggle}
               onClose={this.handleDrawerToggle}
               classes={{
                 paper: classes.drawerPaper
               }}
             >
               {drawer}
-            </Drawer>
+            </SwipeableDrawer>
             <span className={classes.span}>
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
